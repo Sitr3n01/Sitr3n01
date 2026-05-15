@@ -31,7 +31,7 @@ My contribution is focused on the multiplayer and networking layer, including Ep
 
 **Main technologies:** Unity 6, C#, Netcode for GameObjects, Unity Transport, Epic Online Services, FMOD
 
-### [ahri agent](https://github.com/Sitr3n01/ahri_agent)
+### [Ahri agent](https://github.com/Sitr3n01/ahri_agent)
 
 Experimental AI assistant platform built as a modular monorepo with backend, desktop and web packages.
 
