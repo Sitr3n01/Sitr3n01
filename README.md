@@ -2,7 +2,7 @@
 
 # José Gilberto | Sitr3n01
 
-** I am currently building my portfolio around game systems, AI tooling and full-stack applications while looking for opportunities to grow as a junior developer.
+I am currently building my portfolio around game systems, AI tooling and full-stack applications while looking for opportunities to grow as a junior developer.
 
 [![GitHub](https://img.shields.io/badge/GitHub-Sitr3n01-181717?style=for-the-badge&logo=github)](https://github.com/Sitr3n01)
 [![Unity](https://img.shields.io/badge/Unity-Multiplayer-000000?style=for-the-badge&logo=unity)](https://unity.com/)
