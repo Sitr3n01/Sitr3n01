@@ -47,7 +47,7 @@ The project is designed around a simple principle: AI can explain the result, bu
 
 **Main technologies:** JavaScript, Node.js, GitHub Actions, CI/CD, static analysis, agent skill workflows, Claude/Codex integration
 
-### [Privacy Clipboard Sentinel](https://github.com/Sitr3n01/privacy_clipboard_for_android)
+### [Privacy Clipboard for Android](https://github.com/Sitr3n01/privacy_clipboard_for_android)
 
 Android privacy audit tool that monitors system log events related to clipboard access attempts.
 
