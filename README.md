@@ -1,8 +1,8 @@
 <div align="center">
 
-# José Gilberto
+# José Gilberto | Sitr3n01
 
-**Junior developer and game development student** focused on Unity, multiplayer systems, AI agents, automation, Android development, and full-stack application architecture.
+**I am currently building my portfolio around game systems, AI tooling and full-stack applications while looking for opportunities to grow as a junior developer.
 
 [![GitHub](https://img.shields.io/badge/GitHub-Sitr3n01-181717?style=for-the-badge&logo=github)](https://github.com/Sitr3n01)
 [![Unity](https://img.shields.io/badge/Unity-Multiplayer-000000?style=for-the-badge&logo=unity)](https://unity.com/)
