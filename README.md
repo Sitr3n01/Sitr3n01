@@ -122,4 +122,5 @@ My goal is to become a developer who can understand the full system, not only is
 ## Contact
 
 - GitHub: [Sitr3n01](https://github.com/Sitr3n01)
-- LinkedIn: add your link here
+- Discord: sitr3n
+- Email: zegilfarias@outlook.com
