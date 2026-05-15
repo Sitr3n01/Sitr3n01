@@ -13,6 +13,12 @@
 
 </div>
 
+## Contato rápido / Quick Contact
+
+- GitHub: [Sitr3n01](https://github.com/Sitr3n01)
+- Discord: `sitr3n`
+- Email: [zegilfarias@outlook.com](mailto:zegilfarias@outlook.com)
+
 <a id="portugues"></a>
 
 ## Português
