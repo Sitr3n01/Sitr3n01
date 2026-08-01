@@ -5,6 +5,7 @@
 **Desenvolvedor Full-Stack · Backend & Jogos · Brasília, DF**
 
 [![GitHub](https://img.shields.io/badge/GitHub-Sitr3n01-181717?style=for-the-badge&logo=github)](https://github.com/Sitr3n01)
+[![Go](https://img.shields.io/badge/Go-00ADD8?style=for-the-badge&logo=go&logoColor=white)](https://go.dev/)
 [![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/)
 [![Django](https://img.shields.io/badge/Django-092E20?style=for-the-badge&logo=django&logoColor=white)](https://www.djangoproject.com/)
 [![FastAPI](https://img.shields.io/badge/FastAPI-009688?style=for-the-badge&logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com/)
@@ -35,11 +36,11 @@
 
 Desenvolvedor full-stack em Brasília. Mantenho um portal Django em produção para cliente real, publico uma aplicação desktop Windows em release Alpha e desenvolvo a camada de multiplayer de um jogo Unity incubado no Brasília Game Hub.
 
-Meu trabalho se concentra em três frentes: sistemas web com Django e FastAPI, arquitetura de multiplayer em tempo real, e ferramentas de desenvolvimento com integração de LLMs.
+Meu trabalho se concentra em três frentes: sistemas web com Django e FastAPI, arquitetura de multiplayer em tempo real, e infraestrutura de IA local — servidores de inferência e ferramentas de desenvolvimento com integração de LLMs.
 
 ### Como eu trabalho
 
-Prefiro construir sistemas completos a componentes isolados — da modelagem de dados ao deploy, passando por CI, testes e operação em produção. Os projetos abaixo cobrem deliberadamente problemas técnicos distintos: sincronização em tempo real, orquestração de múltiplos provedores de LLM, restrições de plataforma no Android, arquitetura local-first e deploy sob restrição de cliente real.
+Prefiro construir sistemas completos a componentes isolados — da modelagem de dados ao deploy, passando por CI, testes e operação em produção. Os projetos abaixo cobrem deliberadamente problemas técnicos distintos: sincronização em tempo real, arquitetura de segurança e *threat modeling*, orquestração de múltiplos provedores de LLM, arquitetura local-first e deploy sob restrição de cliente real.
 
 ---
 
@@ -54,6 +55,20 @@ Arquitetura modular em **oito apps Django** — contas e papéis, institucional,
 Operação e segurança: sanitização de HTML enviado por usuários, validação de extensão e MIME em uploads, CI com Ruff e pytest, e deploy de produção aprovado por *environment* via tag.
 
 **Tecnologias:** Python · Django 5 · PostgreSQL 16 · HTMX · Alpine.js · Django Unfold · Docker Compose · Nginx · Let's Encrypt · GitHub Actions
+
+---
+
+### [Local AI Server](https://github.com/Sitr3n01/IA_local_server) &nbsp; ![status](https://img.shields.io/badge/status-v2%20canary-orange)
+
+Servidor de inferência **local-only** compatível com a API da OpenAI, escrito em Go. Permite que agentes de código como Codex, Claude Code e OpenCode rodem contra um modelo local sem que código-fonte, prompts ou credenciais saiam da máquina.
+
+O projeto é fundamentalmente sobre superfície de segurança: todos os *listeners* são loopback literal, o *edge* remove o header `Authorization` do cliente antes de fazer proxy, três credenciais independentes vivem no Windows Credential Manager, e **não existe fallback para nuvem** — rota, modelo ou *encoding* desconhecido falha localmente em vez de buscar uma segunda opinião.
+
+Nove binários Go: *data* e *control plane*, supervisor com contenção em Windows Job Object e *backoff* exponencial, painel de operador nativo Win32, e três servidores MCP — sendo o administrativo deliberadamente não registrado por padrão. **Razão teste/código de ~40%** (103 funções de teste sobre 8,7k linhas de Go), *threat model* completo, oito ADRs, e CI com Staticcheck, govulncheck, Gitleaks e geração de SBOM CycloneDX.
+
+A promoção para produção está **intencionalmente bloqueada** por dois gates medidos — qualificação do modelo e envelope de memória — documentados abertamente no README em vez de contornados.
+
+**Tecnologias:** Go 1.26 · llama.cpp · Model Context Protocol · PowerShell · Windows API (Job Objects, Credential Manager, ACLs, Win32) · AMD ROCm · GitHub Actions · CycloneDX
 
 ---
 
@@ -81,16 +96,6 @@ Atuo na arquitetura de multiplayer: integração com Epic Online Services, fluxo
 
 ---
 
-### [Ahri Agent](https://github.com/Sitr3n01/ahri_agent) &nbsp; ![status](https://img.shields.io/badge/status-em%20reescrita-lightgrey)
-
-Plataforma de assistente de IA construída como monorepo modular, com pacotes de backend, desktop e web.
-
-Orquestração de múltiplos provedores de LLM, sistemas de persona, design de camadas de memória, streaming via WebSocket, dados *local-first* e contratos TypeScript compartilhados entre pacotes.
-
-**Tecnologias:** TypeScript · Python · FastAPI · Electron · React · SQLite · ChromaDB · Turbo
-
----
-
 ### [Quality Review](https://github.com/Sitr3n01/quality_review) &nbsp; ![status](https://img.shields.io/badge/status-ferramenta-informational)
 
 Quality gate determinístico de CI/CD para codebases desenvolvidas com assistência de IA.
@@ -101,35 +106,27 @@ Fluxos de *baseline/ratchet* para bloquear regressão de qualidade, checks deter
 
 ---
 
-### [Privacy Clipboard for Android](https://github.com/Sitr3n01/privacy_clipboard_for_android) &nbsp; ![status](https://img.shields.io/badge/status-ferramenta-informational)
-
-Ferramenta Android de auditoria de privacidade que monitora eventos de log do sistema relacionados a tentativas de acesso à área de transferência.
-
-Detecção de eventos via logcat, persistência local, *foreground services*, estado reativo de UI e observabilidade de plataforma.
-
-**Tecnologias:** Kotlin · Jetpack Compose · Room · Coroutines · SharedFlow · Android Foreground Service · ADB/logcat
-
----
-
 ## Stack
 
 | Área | Tecnologias |
 |---|---|
-| **Backend** | Python, Django 5, FastAPI, SQLAlchemy, Pydantic, REST API |
+| **Backend** | Go, Python, Django 5, FastAPI, SQLAlchemy, Pydantic, REST API |
+| **Sistemas** | Windows API (Job Objects, Credential Manager, ACLs, Win32), PowerShell, supervisão de processos |
 | **Frontend** | React 18, Vite, TypeScript, JavaScript, HTMX, Alpine.js, HTML, CSS |
 | **Desktop** | Electron, PyInstaller, electron-builder |
 | **Jogos** | Unity 6, C#, Netcode for GameObjects, Unity Transport, Epic Online Services, FMOD |
 | **Android** | Kotlin, Jetpack Compose, Room, Coroutines |
 | **Dados** | PostgreSQL, SQLite, ChromaDB |
 | **DevOps** | Docker, Docker Compose, Nginx, GitHub Actions, Let's Encrypt, Linux, VPS, Git |
-| **Qualidade** | pytest, Ruff, ESLint, quality gates, CI/CD |
-| **IA** | APIs de LLM, orquestração multi-provedor, sistemas de memória, RAG |
+| **Qualidade** | pytest, Ruff, ESLint, Staticcheck, govulncheck, Gitleaks, SBOM, quality gates, CI/CD |
+| **IA** | APIs de LLM, inferência local (llama.cpp), Model Context Protocol, orquestração multi-provedor, sistemas de memória, RAG |
+| **Segurança** | Threat modeling, gestão de credenciais, hardening de ACL e firewall, menor privilégio |
 
 ---
 
 ## Frentes ativas
 
-- Reescrita e escalonamento da arquitetura do `ahri_agent`
+- Qualificação de modelo e soak de 72 h para promover o Local AI Server a produção
 - Padrões avançados de sincronização multiplayer em Unity
 - Elevação do LUMINA a Beta: cobertura de testes e CI/CD
 - Manutenção evolutiva do portal em produção
@@ -156,11 +153,11 @@ Detecção de eventos via logcat, persistência local, *foreground services*, es
 
 Full-stack developer based in Brasília, Brazil. I maintain a Django portal **running in production for a real client**, ship a Windows desktop application in Alpha release, and build the multiplayer layer of a Unity game incubated at Brasília Game Hub.
 
-My work centres on three fronts: web systems with Django and FastAPI, real-time multiplayer architecture, and developer tooling with LLM integration.
+My work centres on three fronts: web systems with Django and FastAPI, real-time multiplayer architecture, and local AI infrastructure — inference servers and developer tooling with LLM integration.
 
 ### How I work
 
-I prefer building complete systems over isolated components — from data modelling to deployment, including CI, testing and production operation. The projects below deliberately cover distinct technical problems: real-time synchronisation, multi-provider LLM orchestration, Android platform constraints, local-first architecture, and deployment under real-client constraints.
+I prefer building complete systems over isolated components — from data modelling to deployment, including CI, testing and production operation. The projects below deliberately cover distinct technical problems: real-time synchronisation, security architecture and threat modelling, multi-provider LLM orchestration, local-first architecture, and deployment under real-client constraints.
 
 ---
 
@@ -175,6 +172,20 @@ Modular architecture across **eight Django apps** — accounts and roles, instit
 Operations and security: sanitisation of user-submitted HTML, extension and MIME validation on uploads, CI with Ruff and pytest, and production deployment approved via environment gate and tag.
 
 **Technologies:** Python · Django 5 · PostgreSQL 16 · HTMX · Alpine.js · Django Unfold · Docker Compose · Nginx · Let's Encrypt · GitHub Actions
+
+---
+
+### [Local AI Server](https://github.com/Sitr3n01/IA_local_server) &nbsp; ![status](https://img.shields.io/badge/status-v2%20canary-orange)
+
+Loopback-only, OpenAI-compatible inference server written in Go. It lets coding agents such as Codex, Claude Code and OpenCode run against a local model without source code, prompts or credentials ever leaving the machine.
+
+The project is fundamentally about security surface: every listener is literal loopback, the edge strips the client `Authorization` header before proxying, three independent credentials live in Windows Credential Manager, and **there is no cloud fallback** — an unknown route, model or encoding fails locally rather than seeking a second opinion.
+
+Nine Go binaries: data and control plane, a supervisor with Windows Job Object containment and exponential restart backoff, a native Win32 operator panel, and three MCP servers — the administrative one deliberately unregistered by default. **~40% test-to-source ratio** (103 test functions over 8.7k lines of Go), a full threat model, eight ADRs, and CI running Staticcheck, govulncheck, Gitleaks and CycloneDX SBOM generation.
+
+Production promotion is **intentionally blocked** by two measured gates — model qualification and memory envelope — documented openly in the README rather than worked around.
+
+**Technologies:** Go 1.26 · llama.cpp · Model Context Protocol · PowerShell · Windows API (Job Objects, Credential Manager, ACLs, Win32) · AMD ROCm · GitHub Actions · CycloneDX
 
 ---
 
@@ -202,16 +213,6 @@ I work on the multiplayer architecture: Epic Online Services integration, lobby 
 
 ---
 
-### [Ahri Agent](https://github.com/Sitr3n01/ahri_agent) &nbsp; ![status](https://img.shields.io/badge/status-being%20rewritten-lightgrey)
-
-AI assistant platform built as a modular monorepo with backend, desktop and web packages.
-
-Multi-provider LLM orchestration, persona systems, memory layer design, WebSocket streaming, local-first data handling, and shared TypeScript contracts across packages.
-
-**Technologies:** TypeScript · Python · FastAPI · Electron · React · SQLite · ChromaDB · Turbo
-
----
-
 ### [Quality Review](https://github.com/Sitr3n01/quality_review) &nbsp; ![status](https://img.shields.io/badge/status-tooling-informational)
 
 Deterministic CI/CD quality gate for AI-assisted codebases.
@@ -222,35 +223,27 @@ Baseline/ratchet workflows to block quality regression, deterministic checks, st
 
 ---
 
-### [Privacy Clipboard for Android](https://github.com/Sitr3n01/privacy_clipboard_for_android) &nbsp; ![status](https://img.shields.io/badge/status-tooling-informational)
-
-Android privacy audit tool that monitors system log events related to clipboard access attempts.
-
-Logcat-based event detection, local persistence, foreground services, reactive UI state, and platform observability.
-
-**Technologies:** Kotlin · Jetpack Compose · Room · Coroutines · SharedFlow · Android Foreground Service · ADB/logcat
-
----
-
 ## Stack
 
 | Area | Technologies |
 |---|---|
-| **Backend** | Python, Django 5, FastAPI, SQLAlchemy, Pydantic, REST API |
+| **Backend** | Go, Python, Django 5, FastAPI, SQLAlchemy, Pydantic, REST API |
+| **Systems** | Windows API (Job Objects, Credential Manager, ACLs, Win32), PowerShell, process supervision |
 | **Frontend** | React 18, Vite, TypeScript, JavaScript, HTMX, Alpine.js, HTML, CSS |
 | **Desktop** | Electron, PyInstaller, electron-builder |
 | **Games** | Unity 6, C#, Netcode for GameObjects, Unity Transport, Epic Online Services, FMOD |
 | **Android** | Kotlin, Jetpack Compose, Room, Coroutines |
 | **Data** | PostgreSQL, SQLite, ChromaDB |
 | **DevOps** | Docker, Docker Compose, Nginx, GitHub Actions, Let's Encrypt, Linux, VPS, Git |
-| **Quality** | pytest, Ruff, ESLint, quality gates, CI/CD |
-| **AI** | LLM APIs, multi-provider orchestration, memory systems, RAG |
+| **Quality** | pytest, Ruff, ESLint, Staticcheck, govulncheck, Gitleaks, SBOM, quality gates, CI/CD |
+| **AI** | LLM APIs, local inference (llama.cpp), Model Context Protocol, multi-provider orchestration, memory systems, RAG |
+| **Security** | Threat modelling, credential management, ACL and firewall hardening, least privilege |
 
 ---
 
 ## Active fronts
 
-- Rewriting and scaling the `ahri_agent` architecture
+- Model qualification and 72-hour soak to promote the Local AI Server to production
 - Advanced multiplayer synchronisation patterns in Unity
 - Taking LUMINA to Beta: test coverage and CI/CD
 - Evolutionary maintenance of the production portal
