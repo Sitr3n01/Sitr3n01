@@ -12,7 +12,6 @@
 [![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)](https://react.dev/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 [![Unity](https://img.shields.io/badge/Unity-000000?style=for-the-badge&logo=unity&logoColor=white)](https://unity.com/)
-[![Kotlin](https://img.shields.io/badge/Kotlin-7F52FF?style=for-the-badge&logo=kotlin&logoColor=white)](https://kotlinlang.org/)
 
 <br>
 
@@ -115,7 +114,6 @@ Fluxos de *baseline/ratchet* para bloquear regressão de qualidade, checks deter
 | **Frontend** | React 18, Vite, TypeScript, JavaScript, HTMX, Alpine.js, HTML, CSS |
 | **Desktop** | Electron, PyInstaller, electron-builder |
 | **Jogos** | Unity 6, C#, Netcode for GameObjects, Unity Transport, Epic Online Services, FMOD |
-| **Android** | Kotlin, Jetpack Compose, Room, Coroutines |
 | **Dados** | PostgreSQL, SQLite, ChromaDB |
 | **DevOps** | Docker, Docker Compose, Nginx, GitHub Actions, Let's Encrypt, Linux, VPS, Git |
 | **Qualidade** | pytest, Ruff, ESLint, Staticcheck, govulncheck, Gitleaks, SBOM, quality gates, CI/CD |
@@ -232,7 +230,6 @@ Baseline/ratchet workflows to block quality regression, deterministic checks, st
 | **Frontend** | React 18, Vite, TypeScript, JavaScript, HTMX, Alpine.js, HTML, CSS |
 | **Desktop** | Electron, PyInstaller, electron-builder |
 | **Games** | Unity 6, C#, Netcode for GameObjects, Unity Transport, Epic Online Services, FMOD |
-| **Android** | Kotlin, Jetpack Compose, Room, Coroutines |
 | **Data** | PostgreSQL, SQLite, ChromaDB |
 | **DevOps** | Docker, Docker Compose, Nginx, GitHub Actions, Let's Encrypt, Linux, VPS, Git |
 | **Quality** | pytest, Ruff, ESLint, Staticcheck, govulncheck, Gitleaks, SBOM, quality gates, CI/CD |
