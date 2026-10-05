@@ -57,17 +57,17 @@ Operação e segurança: sanitização de HTML enviado por usuários, validaçã
 
 ---
 
-### [Local AI Server](https://github.com/Sitr3n01/IA_local_server) &nbsp; ![status](https://img.shields.io/badge/status-v2%20canary-orange)
+### [Local AI Provider](https://github.com/Sitr3n01/local-ai-provider) &nbsp; ![status](https://img.shields.io/badge/status-v2%20canary-orange)
 
 Servidor de inferência **local-only** compatível com a API da OpenAI, escrito em Go. Permite que agentes de código como Codex, Claude Code e OpenCode rodem contra um modelo local sem que código-fonte, prompts ou credenciais saiam da máquina.
 
 O projeto é fundamentalmente sobre superfície de segurança: todos os *listeners* são loopback literal, o *edge* remove o header `Authorization` do cliente antes de fazer proxy, três credenciais independentes vivem no Windows Credential Manager, e **não existe fallback para nuvem** — rota, modelo ou *encoding* desconhecido falha localmente em vez de buscar uma segunda opinião.
 
-Nove binários Go: *data* e *control plane*, supervisor com contenção em Windows Job Object e *backoff* exponencial, painel de operador nativo Win32, e três servidores MCP — sendo o administrativo deliberadamente não registrado por padrão. **Razão teste/código de ~40%** (103 funções de teste sobre 8,7k linhas de Go), *threat model* completo, oito ADRs, e CI com Staticcheck, govulncheck, Gitleaks e geração de SBOM CycloneDX.
+Onze executáveis Go: *data* e *control plane*, supervisor com contenção em Windows Job Object e *backoff* exponencial, app de bandeja e monitor no navegador, e servidores MCP — o administrativo deliberadamente não registrado por padrão. **440 funções de teste** (~15 mil linhas de teste para ~24 mil de Go), *threat model*, 22 ADRs, e CI com Staticcheck, govulncheck, *race detector*, Gitleaks no histórico completo, CodeQL e SBOM CycloneDX.
 
-A promoção para produção está **intencionalmente bloqueada** por dois gates medidos — qualificação do modelo e envelope de memória — documentados abertamente no README em vez de contornados.
+Medido no canary: *overhead* p95 do *edge* de **18,2 ms**, retenção de contexto **120/120 até 240 mil tokens**, e uma sessão real do Codex que corrigiu um teste Go em 114 s. A promoção para produção segue **intencionalmente bloqueada** até a revalidação física do perfil de contexto longo e a qualificação dos artefatos — documentado abertamente no README em vez de contornado.
 
-**Tecnologias:** Go 1.26 · llama.cpp · Model Context Protocol · PowerShell · Windows API (Job Objects, Credential Manager, ACLs, Win32) · AMD ROCm · GitHub Actions · CycloneDX
+**Tecnologias:** Go 1.26 · llama.cpp · Model Context Protocol · PowerShell · Windows API (Job Objects, Credential Manager, ACLs, named pipes, Win32) · AMD ROCm · GitHub Actions · CodeQL · CycloneDX
 
 ---
 
@@ -116,7 +116,7 @@ Fluxos de *baseline/ratchet* para bloquear regressão de qualidade, checks deter
 | **Jogos** | Unity 6, C#, Netcode for GameObjects, Unity Transport, Epic Online Services, FMOD |
 | **Dados** | PostgreSQL, SQLite, ChromaDB |
 | **DevOps** | Docker, Docker Compose, Nginx, GitHub Actions, Let's Encrypt, Linux, VPS, Git |
-| **Qualidade** | pytest, Ruff, ESLint, Staticcheck, govulncheck, Gitleaks, SBOM, quality gates, CI/CD |
+| **Qualidade** | pytest, Ruff, ESLint, Staticcheck, govulncheck, Gitleaks, CodeQL, SBOM, quality gates, CI/CD |
 | **IA** | APIs de LLM, inferência local (llama.cpp), Model Context Protocol, orquestração multi-provedor, sistemas de memória, RAG |
 | **Segurança** | Threat modeling, gestão de credenciais, hardening de ACL e firewall, menor privilégio |
 
@@ -124,7 +124,7 @@ Fluxos de *baseline/ratchet* para bloquear regressão de qualidade, checks deter
 
 ## Frentes ativas
 
-- Qualificação de modelo e soak de 72 h para promover o Local AI Server a produção
+- Qualificação dos artefatos de produção do Local AI Provider, a começar pela revalidação física do perfil de contexto longo
 - Padrões avançados de sincronização multiplayer em Unity
 - Elevação do LUMINA a Beta: cobertura de testes e CI/CD
 - Manutenção evolutiva do portal em produção
@@ -173,17 +173,17 @@ Operations and security: sanitisation of user-submitted HTML, extension and MIME
 
 ---
 
-### [Local AI Server](https://github.com/Sitr3n01/IA_local_server) &nbsp; ![status](https://img.shields.io/badge/status-v2%20canary-orange)
+### [Local AI Provider](https://github.com/Sitr3n01/local-ai-provider) &nbsp; ![status](https://img.shields.io/badge/status-v2%20canary-orange)
 
 Loopback-only, OpenAI-compatible inference server written in Go. It lets coding agents such as Codex, Claude Code and OpenCode run against a local model without source code, prompts or credentials ever leaving the machine.
 
 The project is fundamentally about security surface: every listener is literal loopback, the edge strips the client `Authorization` header before proxying, three independent credentials live in Windows Credential Manager, and **there is no cloud fallback** — an unknown route, model or encoding fails locally rather than seeking a second opinion.
 
-Nine Go binaries: data and control plane, a supervisor with Windows Job Object containment and exponential restart backoff, a native Win32 operator panel, and three MCP servers — the administrative one deliberately unregistered by default. **~40% test-to-source ratio** (103 test functions over 8.7k lines of Go), a full threat model, eight ADRs, and CI running Staticcheck, govulncheck, Gitleaks and CycloneDX SBOM generation.
+Eleven Go executables: data and control plane, a supervisor with Windows Job Object containment and exponential restart backoff, a tray app and a browser monitor, and MCP servers — the administrative one deliberately unregistered by default. **440 test functions** (~15k lines of tests for ~24k lines of Go), a threat model, 22 ADRs, and CI running Staticcheck, govulncheck, the race detector, Gitleaks over the full history, CodeQL and CycloneDX SBOM generation.
 
-Production promotion is **intentionally blocked** by two measured gates — model qualification and memory envelope — documented openly in the README rather than worked around.
+Measured on the canary: **18.2 ms** p95 edge overhead, **120/120** long-context recall up to 240k tokens, and a real Codex session that fixed a failing Go test in 114 s. Production promotion stays **intentionally blocked** until the long-context profile's physical revalidation and artifact qualification pass — documented openly in the README rather than worked around.
 
-**Technologies:** Go 1.26 · llama.cpp · Model Context Protocol · PowerShell · Windows API (Job Objects, Credential Manager, ACLs, Win32) · AMD ROCm · GitHub Actions · CycloneDX
+**Technologies:** Go 1.26 · llama.cpp · Model Context Protocol · PowerShell · Windows API (Job Objects, Credential Manager, ACLs, named pipes, Win32) · AMD ROCm · GitHub Actions · CodeQL · CycloneDX
 
 ---
 
@@ -232,7 +232,7 @@ Baseline/ratchet workflows to block quality regression, deterministic checks, st
 | **Games** | Unity 6, C#, Netcode for GameObjects, Unity Transport, Epic Online Services, FMOD |
 | **Data** | PostgreSQL, SQLite, ChromaDB |
 | **DevOps** | Docker, Docker Compose, Nginx, GitHub Actions, Let's Encrypt, Linux, VPS, Git |
-| **Quality** | pytest, Ruff, ESLint, Staticcheck, govulncheck, Gitleaks, SBOM, quality gates, CI/CD |
+| **Quality** | pytest, Ruff, ESLint, Staticcheck, govulncheck, Gitleaks, CodeQL, SBOM, quality gates, CI/CD |
 | **AI** | LLM APIs, local inference (llama.cpp), Model Context Protocol, multi-provider orchestration, memory systems, RAG |
 | **Security** | Threat modelling, credential management, ACL and firewall hardening, least privilege |
 
@@ -240,7 +240,7 @@ Baseline/ratchet workflows to block quality regression, deterministic checks, st
 
 ## Active fronts
 
-- Model qualification and 72-hour soak to promote the Local AI Server to production
+- Qualifying the Local AI Provider's production artifacts, starting with the long-context profile's physical revalidation
 - Advanced multiplayer synchronisation patterns in Unity
 - Taking LUMINA to Beta: test coverage and CI/CD
 - Evolutionary maintenance of the production portal
