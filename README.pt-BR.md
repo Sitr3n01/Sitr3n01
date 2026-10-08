@@ -1,19 +1,10 @@
 <div align="center">
 
-# José Gilberto
-
-**Desenvolvedor full-stack · Django e Wagtail em produção · Go e infraestrutura de IA local · Multiplayer em Unity**
-
-Brasília, DF · [zegilfarias@outlook.com](mailto:zegilfarias@outlook.com)
-
-![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
-![Django](https://img.shields.io/badge/Django-092E20?style=for-the-badge&logo=django&logoColor=white)
-![Wagtail](https://img.shields.io/badge/Wagtail-43B1B0?style=for-the-badge&logo=wagtail&logoColor=white)
-![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white)
-![Go](https://img.shields.io/badge/Go-00ADD8?style=for-the-badge&logo=go&logoColor=white)
-![Unity](https://img.shields.io/badge/Unity-000000?style=for-the-badge&logo=unity&logoColor=white)
+<img src="assets/banner.pt-BR.svg" width="100%" alt="José Gilberto, desenvolvedor full-stack. Construo sistemas completos e cuido deles em produção.">
 
 [English](https://github.com/Sitr3n01) · **Português**
+
+Brasília, DF · [zegilfarias@outlook.com](mailto:zegilfarias@outlook.com) · Discord `sitr3n`
 
 </div>
 
@@ -28,7 +19,13 @@ Construo sistemas completos e cuido deles em produção: modelagem de dados, int
 
 ### [news_portal](https://github.com/Sitr3n01/news_portal/blob/master/README.pt-BR.md) &nbsp; ![status: em produção](https://img.shields.io/badge/status-em%20produ%C3%A7%C3%A3o-2ea44f)
 
-Um único código Django 5.2 + Wagtail 7.4 por trás de dois sites em produção para um cliente real e do painel editorial que a equipe usa todo dia: a [Komuniki](https://komuniki.com.br), site editorial de uma escola de comunicação e artes, e o [Blog da Kelly](https://kellyfarias.com.br/news/), um portal de notícias. Construí e opero tudo de ponta a ponta; está no ar desde junho de 2026.
+Um único código Django 5.2 + Wagtail 7.4 por trás de dois sites em produção para um cliente real e do painel editorial que a equipe usa todo dia. A [Komuniki](https://komuniki.com.br) é o site de uma escola de comunicação e artes, e o [Blog da Kelly](https://kellyfarias.com.br/news/) é um portal de notícias. Construí e opero tudo de ponta a ponta; está no ar desde junho de 2026.
+
+**Em números:** 823 testes, cobertura de branches exigida a partir de 82%, 7 problemas de auditoria (3 altos) corrigidos com teste de regressão, cache de build do Docker de 23,95 GB para 442 MB.
+
+<details>
+<summary>O que tem dentro</summary>
+<br>
 
 - **Movimento que respeita quem lê.** Hero em WebGL com three.js e shaders próprios, e reveal de texto com GSAP. Tudo isso recua com `prefers-reduced-motion`.
 - **Um painel que a equipe da cliente usa de verdade.** O Django admin (Unfold) e o admin do Wagtail viraram um painel só, com fluxo editorial: o repórter escreve, o editor aprova, e o agendamento só publica revisão aprovada.
@@ -38,9 +35,19 @@ Um único código Django 5.2 + Wagtail 7.4 por trás de dois sites em produção
 
 **Tecnologias:** Python · Django · Wagtail · PostgreSQL · HTMX · Alpine.js · Tailwind CSS · three.js · GSAP · Docker · Nginx · GitHub Actions
 
+</details>
+
 ### [Local AI Provider](https://github.com/Sitr3n01/local-ai-provider/blob/main/README.pt-BR.md) &nbsp; ![status: canary v2](https://img.shields.io/badge/status-canary%20v2-orange)
 
-Servidor de inferência em Go, compatível com a API da OpenAI e restrito a loopback, que permite rodar agentes de código como Codex, Claude Code e OpenCode contra um modelo local, sem que código-fonte, prompts ou credenciais saiam da máquina. É um plano de inferência e controle de admissão na frente do llama.cpp, mais o encanamento de Windows para rodá-lo como serviço supervisionado.
+Servidor de inferência em Go, compatível com a API da OpenAI e restrito a loopback, que permite rodar agentes de código como Codex, Claude Code e OpenCode contra um modelo local, sem que código-fonte, prompts ou credenciais saiam da máquina.
+
+**Em números:** overhead p95 de 18,2 ms no edge contra um gate de 50 ms, retenção de 120/120 até 240k tokens, 728 testes e subtestes Go, threat model e 22 ADRs.
+
+<details>
+<summary>O que tem dentro</summary>
+<br>
+
+É um plano de inferência e controle de admissão na frente do llama.cpp, mais o encanamento de Windows para rodá-lo como serviço supervisionado.
 
 - **Invariantes de segurança verificados por testes.** Todo listener é loopback literal, o header `Authorization` do cliente nunca chega ao modelo, não existe fallback para a nuvem e os logs só têm metadados. Rota, modelo ou encoding desconhecido falha fechado.
 - **Medido, com a evidência linkada.** Overhead p95 de 18,2 ms no edge contra um gate de 50 ms, retenção de 120/120 até 240k tokens, decode de 50,4 tok/s com 120k tokens no contexto e uma sessão real do Codex que corrigiu um teste Go em 114 s.
@@ -49,28 +56,52 @@ Servidor de inferência em Go, compatível com a API da OpenAI e restrito a loop
 
 **Tecnologias:** Go · llama.cpp · Model Context Protocol · Windows API · PowerShell · AMD ROCm · GitHub Actions · CodeQL
 
+</details>
+
 ## Desenvolvimento de jogos
 
 Projetos acadêmicos em equipe, feitos em Unity 6.
 
 ### [ExoBeast](https://github.com/Matt040205/ExoBeast/blob/main/README.pt-BR.md) &nbsp; ![status: em desenvolvimento](https://img.shields.io/badge/status-em%20desenvolvimento-orange)
 
-Tower defense cooperativo para 1 a 4 jogadores online, incubado no Brasília Game Hub. Sou responsável pelo multiplayer de ponta a ponta (cerca de 9,1 mil linhas de C#): login e lobbies no Epic Online Services, Unity Relay e o fluxo de sessão no Netcode for GameObjects, com o host como autoridade do estado de jogo. Também fiz as otimizações de rede, uma refatoração do lobby em oito sprints sob um quality gate no estilo ratchet, a integração com FMOD, duas ferramentas de editor (Exo Config e uma ponte Blender → Unity) e cerca de 140 testes NUnit.
+Tower defense cooperativo para 1 a 4 jogadores online, incubado no Brasília Game Hub. Sou responsável pelo multiplayer de ponta a ponta (cerca de 9,1 mil linhas de C#): login e lobbies no Epic Online Services, Unity Relay e o fluxo de sessão no Netcode for GameObjects.
+
+<details>
+<summary>Mais</summary>
+<br>
+
+O host é a autoridade do estado de jogo. Também fiz as otimizações de rede, uma refatoração do lobby em oito sprints sob um quality gate no estilo ratchet, a integração com FMOD, duas ferramentas de editor (Exo Config e uma ponte Blender → Unity) e cerca de 140 testes NUnit.
+
+</details>
 
 ### [Loopia](https://github.com/Matt040205/Loopia/blob/main/README.pt-BR.md) &nbsp; ![status: protótipo](https://img.shields.io/badge/status-prot%C3%B3tipo-orange)
 
-Protótipo de estratégia em loop: o herói percorre sozinho um anel hexagonal gerado proceduralmente, enquanto o jogador molda o mundo com cartas de ilha. Escrevi toda a programação de gameplay da versão atual (`Assets/Scripts/Hex`, cerca de 5,6 mil linhas de C#): um gerador de anel que continua sendo um ciclo válido enquanto fica irregular, NavMesh assado em tempo de jogo com links de pulo entre as ilhas, cartas data-driven que simulam uma volta inteira antes de aceitar uma colocação, combate automático, IA dos inimigos e save em JSON. Os créditos estão no [README](https://github.com/Matt040205/Loopia/blob/main/README.pt-BR.md#equipe) do projeto.
+Protótipo de estratégia em loop: o herói percorre sozinho um anel hexagonal gerado proceduralmente, enquanto o jogador molda o mundo com cartas de ilha. Escrevi toda a programação de gameplay da versão atual (cerca de 5,6 mil linhas de C#); os créditos estão no [README](https://github.com/Matt040205/Loopia/blob/main/README.pt-BR.md#equipe) do projeto.
+
+<details>
+<summary>Mais</summary>
+<br>
+
+Em `Assets/Scripts/Hex`: um gerador de anel que continua sendo um ciclo válido enquanto fica irregular, NavMesh assado em tempo de jogo com links de pulo entre as ilhas, cartas data-driven que simulam uma volta inteira antes de aceitar uma colocação, combate automático, IA dos inimigos e save em JSON.
+
+</details>
 
 ## Outros projetos
 
 - **[Quality Review](https://github.com/Sitr3n01/quality_review):** quality gate determinístico de CI/CD para codebases com assistência de IA, com skills para Claude Code e Codex. Ratchets sobre um baseline deixam as métricas melhorarem e bloqueiam regressões; a IA só explica o veredito. A mesma abordagem guiou a refatoração do lobby do ExoBeast.
-- **[LUMINA](https://github.com/Sitr3n01/apartment_rental_manager):** app desktop Windows local-first para quem aluga por temporada, com sincronização iCal entre Airbnb e Booking.com, detecção de conflitos, documentos e notificações. Electron, React e FastAPI; release Alpha.
+- **[LUMINA](https://github.com/Sitr3n01/lumina):** app desktop Windows local-first para quem aluga por temporada, com sincronização iCal entre Airbnb e Booking.com, detecção de conflitos, documentos e notificações. Electron, React e FastAPI; release Alpha.
 
 ## Como eu trabalho
 
 Uso agentes de código com IA (Claude Code e Codex) como pares de programação. Eu defino a direção e tomo as decisões: escopo, arquitetura, fronteiras de confiança e o que conta como pronto. Toda mudança, seja quem for que a redigiu, passa pelas mesmas travas: checks obrigatórios no CI, testes, análise estática, varredura de segredos e, onde importa, evidência medida. O threat model, as ADRs e os relatórios de auditoria destes repositórios são onde essas decisões ficam registradas.
 
 ## Stack
+
+**Principal:** Python, Django, Wagtail, FastAPI, Go, PostgreSQL, HTMX, React, Docker Compose, GitHub Actions, Unity 6 e C#.
+
+<details>
+<summary>Stack completa por área</summary>
+<br>
 
 | Área | Tecnologias |
 |---|---|
@@ -85,7 +116,11 @@ Uso agentes de código com IA (Claude Code e Codex) como pares de programação.
 | **Jogos** | Unity 6, C#, Netcode for GameObjects, Epic Online Services, Unity Relay, FMOD, NUnit, addons do Blender em Python |
 | **Desktop** | Electron, PyInstaller, electron-builder |
 
+</details>
+
 ## Agora
+
+<!-- Atualize esta seção sempre que mudar. Um "Agora" desatualizado pesa mais contra do que nenhum. -->
 
 - Qualificar o Local AI Provider para produção, a começar pela revalidação física do perfil de contexto longo.
 - news_portal: rodar a suíte de testes contra PostgreSQL no CI e migrar para o Wagtail 8.
@@ -94,7 +129,3 @@ Uso agentes de código com IA (Claude Code e Codex) como pares de programação.
 ## Formação
 
 **Bacharelado em Jogos Digitais**, IESB, Brasília (conclusão prevista em 2027)
-
-## Contato
-
-E-mail: [zegilfarias@outlook.com](mailto:zegilfarias@outlook.com) · Discord: `sitr3n`
