@@ -1,260 +1,101 @@
 <div align="center">
 
-# José Gilberto | Sitr3n01
+# José Gilberto
 
-**Desenvolvedor Full-Stack · Backend & Jogos · Brasília, DF**
+**Full-stack developer · Django & Wagtail in production · Go & local AI infrastructure · Unity multiplayer**
 
-[![GitHub](https://img.shields.io/badge/GitHub-Sitr3n01-181717?style=for-the-badge&logo=github)](https://github.com/Sitr3n01)
-[![Go](https://img.shields.io/badge/Go-00ADD8?style=for-the-badge&logo=go&logoColor=white)](https://go.dev/)
-[![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/)
-[![Django](https://img.shields.io/badge/Django-092E20?style=for-the-badge&logo=django&logoColor=white)](https://www.djangoproject.com/)
-[![FastAPI](https://img.shields.io/badge/FastAPI-009688?style=for-the-badge&logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com/)
-[![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)](https://react.dev/)
-[![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
-[![Unity](https://img.shields.io/badge/Unity-000000?style=for-the-badge&logo=unity&logoColor=white)](https://unity.com/)
+Brasília, Brazil · [zegilfarias@outlook.com](mailto:zegilfarias@outlook.com)
 
-<br>
+![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
+![Django](https://img.shields.io/badge/Django-092E20?style=for-the-badge&logo=django&logoColor=white)
+![Wagtail](https://img.shields.io/badge/Wagtail-43B1B0?style=for-the-badge&logo=wagtail&logoColor=white)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-4169E1?style=for-the-badge&logo=postgresql&logoColor=white)
+![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white)
+![Go](https://img.shields.io/badge/Go-00ADD8?style=for-the-badge&logo=go&logoColor=white)
+![Unity](https://img.shields.io/badge/Unity-000000?style=for-the-badge&logo=unity&logoColor=white)
 
-**[Português](#português)** · **[English](#english)**
-
-</div>
-
----
-
-## Contato rápido / Quick Contact
-
-- GitHub: [Sitr3n01](https://github.com/Sitr3n01)
-- Discord: `sitr3n`
-- Email: [zegilfarias@outlook.com](mailto:zegilfarias@outlook.com)
-
----
-
-<a id="português"></a>
-
-## Português
-
-Desenvolvedor full-stack em Brasília. Mantenho um portal Django em produção para cliente real, publico uma aplicação desktop Windows em release Alpha e desenvolvo a camada de multiplayer de um jogo Unity incubado no Brasília Game Hub.
-
-Meu trabalho se concentra em três frentes: sistemas web com Django e FastAPI, arquitetura de multiplayer em tempo real, e infraestrutura de IA local — servidores de inferência e ferramentas de desenvolvimento com integração de LLMs.
-
-### Como eu trabalho
-
-Prefiro construir sistemas completos a componentes isolados — da modelagem de dados ao deploy, passando por CI, testes e operação em produção. Os projetos abaixo cobrem deliberadamente problemas técnicos distintos: sincronização em tempo real, arquitetura de segurança e *threat modeling*, orquestração de múltiplos provedores de LLM, arquitetura local-first e deploy sob restrição de cliente real.
-
----
-
-## Projetos
-
-### [News Portal](https://github.com/Sitr3n01/news_portal) &nbsp; ![status](https://img.shields.io/badge/status-em%20produção-2ea44f)
-
-Portal Django 5 **em produção para cliente real**, em manutenção evolutiva. Serve dois portais públicos e um painel administrativo a partir do mesmo codebase: site institucional e portal de notícias com artigos, categorias, tags, RSS, comentários e newsletter.
-
-Arquitetura modular em **oito apps Django** — contas e papéis, institucional, vagas e candidaturas, contato, notícias, biblioteca de mídia, integrações sociais e utilitários compartilhados — sobre PostgreSQL 16.
-
-Operação e segurança: sanitização de HTML enviado por usuários, validação de extensão e MIME em uploads, CI com Ruff e pytest, e deploy de produção aprovado por *environment* via tag.
-
-**Tecnologias:** Python · Django 5 · PostgreSQL 16 · HTMX · Alpine.js · Django Unfold · Docker Compose · Nginx · Let's Encrypt · GitHub Actions
-
----
-
-### [Local AI Provider](https://github.com/Sitr3n01/local-ai-provider) &nbsp; ![status](https://img.shields.io/badge/status-v2%20canary-orange)
-
-Servidor de inferência **local-only** compatível com a API da OpenAI, escrito em Go. Permite que agentes de código como Codex, Claude Code e OpenCode rodem contra um modelo local sem que código-fonte, prompts ou credenciais saiam da máquina.
-
-O projeto é fundamentalmente sobre superfície de segurança: todos os *listeners* são loopback literal, o *edge* remove o header `Authorization` do cliente antes de fazer proxy, três credenciais independentes vivem no Windows Credential Manager, e **não existe fallback para nuvem** — rota, modelo ou *encoding* desconhecido falha localmente em vez de buscar uma segunda opinião.
-
-Onze executáveis Go: *data* e *control plane*, supervisor com contenção em Windows Job Object e *backoff* exponencial, app de bandeja e monitor no navegador, e servidores MCP — o administrativo deliberadamente não registrado por padrão. **440 funções de teste** (~15 mil linhas de teste para ~24 mil de Go), *threat model*, 22 ADRs, e CI com Staticcheck, govulncheck, *race detector*, Gitleaks no histórico completo, CodeQL e SBOM CycloneDX.
-
-Medido no canary: *overhead* p95 do *edge* de **18,2 ms**, retenção de contexto **120/120 até 240 mil tokens**, e uma sessão real do Codex que corrigiu um teste Go em 114 s. A promoção para produção segue **intencionalmente bloqueada** até a revalidação física do perfil de contexto longo e a qualificação dos artefatos — documentado abertamente no README em vez de contornado.
-
-**Tecnologias:** Go 1.26 · llama.cpp · Model Context Protocol · PowerShell · Windows API (Job Objects, Credential Manager, ACLs, named pipes, Win32) · AMD ROCm · GitHub Actions · CodeQL · CycloneDX
-
----
-
-### [LUMINA](https://github.com/Sitr3n01/apartment_rental_manager) &nbsp; ![status](https://img.shields.io/badge/status-release%20Alpha-blue)
-
-Aplicação desktop Windows *local-first* para gestão de aluguéis de curta temporada no Airbnb e Booking.com. Distribuída como instalador, roda inteiramente na máquina do usuário, sem servidores externos.
-
-Sincronização automática de calendários iCal, detecção de conflitos entre plataformas, geração de documentos em DOCX, notificações por e-mail e Telegram, e dashboard de ocupação e receita.
-
-Arquitetura em três camadas: shell Electron, frontend React 18 com Vite, e backend FastAPI com **cerca de 45 endpoints REST em 11 routers** sobre SQLAlchemy e SQLite.
-
-Segurança implementada: JWT HS256 com *blacklist*, bcrypt, bloqueio de conta por tentativas, *rate limiting*, proteção CSRF, *security headers* e validação de entrada contra XSS, *path traversal* e SSTI. **35 testes** em pytest.
-
-**Tecnologias:** Python · FastAPI · SQLAlchemy · React 18 · Vite · Electron 29 · SQLite · JWT · PyInstaller · electron-builder
-
----
-
-### [ExoBeast](https://github.com/Matt040205/ExoBeast) &nbsp; ![status](https://img.shields.io/badge/status-em%20desenvolvimento-orange)
-
-Tower-defense cooperativo em Unity 6 com multiplayer online para até 4 jogadores. Projeto incubado no Brasília Game Hub.
-
-Atuo na arquitetura de multiplayer: integração com Epic Online Services, fluxo de lobby e sessão, sincronização via Unity Netcode, gerenciamento de credenciais de build e depuração de host/client.
-
-**Tecnologias:** Unity 6 · C# · Netcode for GameObjects · Unity Transport · Epic Online Services · FMOD
-
----
-
-### [Quality Review](https://github.com/Sitr3n01/quality_review) &nbsp; ![status](https://img.shields.io/badge/status-ferramenta-informational)
-
-Quality gate determinístico de CI/CD para codebases desenvolvidas com assistência de IA.
-
-Fluxos de *baseline/ratchet* para bloquear regressão de qualidade, checks determinísticos, análise estática e design de pipeline de revisão assistida.
-
-**Tecnologias:** JavaScript · Node.js · GitHub Actions · análise estática · integração com Claude/Codex
-
----
-
-## Stack
-
-| Área | Tecnologias |
-|---|---|
-| **Backend** | Go, Python, Django 5, FastAPI, SQLAlchemy, Pydantic, REST API |
-| **Sistemas** | Windows API (Job Objects, Credential Manager, ACLs, Win32), PowerShell, supervisão de processos |
-| **Frontend** | React 18, Vite, TypeScript, JavaScript, HTMX, Alpine.js, HTML, CSS |
-| **Desktop** | Electron, PyInstaller, electron-builder |
-| **Jogos** | Unity 6, C#, Netcode for GameObjects, Unity Transport, Epic Online Services, FMOD |
-| **Dados** | PostgreSQL, SQLite, ChromaDB |
-| **DevOps** | Docker, Docker Compose, Nginx, GitHub Actions, Let's Encrypt, Linux, VPS, Git |
-| **Qualidade** | pytest, Ruff, ESLint, Staticcheck, govulncheck, Gitleaks, CodeQL, SBOM, quality gates, CI/CD |
-| **IA** | APIs de LLM, inferência local (llama.cpp), Model Context Protocol, orquestração multi-provedor, sistemas de memória, RAG |
-| **Segurança** | Threat modeling, gestão de credenciais, hardening de ACL e firewall, menor privilégio |
-
----
-
-## Frentes ativas
-
-- Qualificação dos artefatos de produção do Local AI Provider, a começar pela revalidação física do perfil de contexto longo
-- Padrões avançados de sincronização multiplayer em Unity
-- Elevação do LUMINA a Beta: cobertura de testes e CI/CD
-- Manutenção evolutiva do portal em produção
-
----
-
-## Formação
-
-**Bacharelado em Jogos Digitais** — IESB, Brasília · conclusão prevista 2027
-
----
-
-<div align="center">
-
-**[⬆ Voltar ao topo](#josé-gilberto--sitr3n01)** · **[English ⬇](#english)**
+**English** · [Português](https://github.com/Sitr3n01/Sitr3n01/blob/main/README.pt-BR.md)
 
 </div>
 
----
+I build complete systems and run them in production: data model, interface, CI/CD and the server underneath. Right now that means a Django + Wagtail platform that runs two production websites for a real client, and a loopback-only inference server in Go that lets coding agents work against a local model without source code leaving the machine. I also wrote the online multiplayer of a Unity game incubated at Brasília Game Hub.
 
-<a id="english"></a>
+## Featured projects
 
-## English
+<p align="center">
+  <a href="https://github.com/Sitr3n01/news_portal"><img src="https://raw.githubusercontent.com/Sitr3n01/news_portal/master/docs/images/social-preview.jpg" width="48%" alt="news_portal: one Django + Wagtail codebase behind two production sites and their newsroom"></a>
+  <a href="https://github.com/Sitr3n01/local-ai-provider"><img src="https://raw.githubusercontent.com/Sitr3n01/local-ai-provider/main/docs/images/social-preview.png" width="48%" alt="Local AI Provider: a loopback-only, OpenAI-compatible inference server for coding agents, next to its live monitor"></a>
+</p>
 
-Full-stack developer based in Brasília, Brazil. I maintain a Django portal **running in production for a real client**, ship a Windows desktop application in Alpha release, and build the multiplayer layer of a Unity game incubated at Brasília Game Hub.
+### [news_portal](https://github.com/Sitr3n01/news_portal) &nbsp; ![status: in production](https://img.shields.io/badge/status-in%20production-2ea44f)
 
-My work centres on three fronts: web systems with Django and FastAPI, real-time multiplayer architecture, and local AI infrastructure — inference servers and developer tooling with LLM integration.
+One Django 5.2 + Wagtail 7.4 codebase behind two production websites for a real client and the newsroom panel their team uses every day: [Komuniki](https://komuniki.com.br), the editorial site of a communication and arts school, and [Blog da Kelly](https://kellyfarias.com.br/news/), a news portal. I built it and operate it end to end; it has been live since June 2026.
 
-### How I work
+- **Motion that respects the reader.** A WebGL hero in three.js with custom shaders and GSAP text reveals. All of it backs off under `prefers-reduced-motion`.
+- **A newsroom the client's team uses daily.** The Django admin (Unfold) and the Wagtail admin merged into one panel, with an editorial workflow: reporters write, editors approve, and scheduling only publishes approved revisions.
+- **Audited security.** A five-category audit found 7 issues (3 high), all fixed with regression tests. Nonce-based CSP, extension and MIME checks on uploads, Google sign-in, django-axes and Cloudflare Turnstile.
+- **Operations on a small VPS.** Docker Compose behind Cloudflare on 1 vCPU and 4 GB. Deploys are pull-based: the server fetches an approved tag, so CI holds no server credentials. I found and fixed a deploy stuck retrying for two months and Docker images that grew quadratically with database dumps, which took the build cache from 23.95 GB to 442 MB.
+- **Quality gates.** 823 tests, branch coverage enforced at 82% (83.5% today), CodeQL, pip-audit, secret scanning and a protected `master`.
 
-I prefer building complete systems over isolated components — from data modelling to deployment, including CI, testing and production operation. The projects below deliberately cover distinct technical problems: real-time synchronisation, security architecture and threat modelling, multi-provider LLM orchestration, local-first architecture, and deployment under real-client constraints.
+**Technologies:** Python · Django · Wagtail · PostgreSQL · HTMX · Alpine.js · Tailwind CSS · three.js · GSAP · Docker · Nginx · GitHub Actions
 
----
+### [Local AI Provider](https://github.com/Sitr3n01/local-ai-provider) &nbsp; ![status: v2 canary](https://img.shields.io/badge/status-v2%20canary-orange)
 
-## Projects
+A loopback-only, OpenAI-compatible inference server in Go that lets coding agents such as Codex, Claude Code and OpenCode run against a local model, so source code, prompts and credentials never leave the machine. It is an inference and admission-control plane in front of llama.cpp, plus the Windows plumbing to run it as a supervised service.
 
-### [News Portal](https://github.com/Sitr3n01/news_portal) &nbsp; ![status](https://img.shields.io/badge/status-in%20production-2ea44f)
+- **Security invariants enforced by tests.** Every listener is literal loopback, the client's `Authorization` header never reaches the model, there is no cloud fallback, and logs carry metadata only. An unknown route, model or encoding fails closed.
+- **Measured, with linked evidence.** 18.2 ms p95 edge overhead against a 50 ms gate, 120/120 long-context recall up to 240k tokens, 50.4 tok/s decode with 120k tokens in context, and a real Codex session that fixed a failing Go test in 114 s.
+- **Engineering.** 11 Go executables (edge, a supervisor with Windows Job Object containment, a tray app, a browser monitor and MCP servers), 728 Go tests and subtests, a threat model and 22 ADRs. CI runs Staticcheck, govulncheck, the race detector, Gitleaks over the full history and CodeQL; releases ship with an SBOM and SHA-256 sums.
+- **Honest status.** Models move through a promotion gate, and production stays blocked until the last evidence is in. When the v1 prototype leaked a credential into local logs, I documented it in an [open incident report](https://github.com/Sitr3n01/local-ai-provider/blob/main/incident-reports/2026-07-20-panel-zstd-credential-exposure.md) and made metadata-only logging a tested invariant.
 
-Django 5 portal **running in production for a real client**, under evolutionary maintenance. Serves two public portals and an admin panel from a single codebase: an institutional site and a news portal with articles, categories, tags, RSS, comments and newsletter.
+**Technologies:** Go · llama.cpp · Model Context Protocol · Windows API · PowerShell · AMD ROCm · GitHub Actions · CodeQL
 
-Modular architecture across **eight Django apps** — accounts and roles, institutional, jobs and applications, contact, news, media library, social integrations and shared utilities — on PostgreSQL 16.
+## Game development
 
-Operations and security: sanitisation of user-submitted HTML, extension and MIME validation on uploads, CI with Ruff and pytest, and production deployment approved via environment gate and tag.
+Student team projects in Unity 6.
 
-**Technologies:** Python · Django 5 · PostgreSQL 16 · HTMX · Alpine.js · Django Unfold · Docker Compose · Nginx · Let's Encrypt · GitHub Actions
+### [ExoBeast](https://github.com/Matt040205/ExoBeast) &nbsp; ![status: in development](https://img.shields.io/badge/status-in%20development-orange)
 
----
+Co-op tower defense for 1–4 players online, incubated at Brasília Game Hub. I own the multiplayer end to end (about 9.1k lines of C#): Epic Online Services login and lobbies, Unity Relay, and the Netcode for GameObjects session flow, with the host as the authority for gameplay state. I also did the network optimizations, an eight-sprint refactor of the lobby under a ratchet quality gate, the FMOD integration, two editor tools (Exo Config and a Blender-to-Unity bridge) and about 140 NUnit tests.
 
-### [Local AI Provider](https://github.com/Sitr3n01/local-ai-provider) &nbsp; ![status](https://img.shields.io/badge/status-v2%20canary-orange)
+### [Loopia](https://github.com/Matt040205/Loopia) &nbsp; ![status: prototype](https://img.shields.io/badge/status-prototype-orange)
 
-Loopback-only, OpenAI-compatible inference server written in Go. It lets coding agents such as Codex, Claude Code and OpenCode run against a local model without source code, prompts or credentials ever leaving the machine.
+A loop-based strategy prototype: the hero runs a procedurally generated hex ring on his own while the player shapes the world with island cards. I wrote all the gameplay code of the current version (`Assets/Scripts/Hex`, about 5.6k lines of C#): a ring generator that keeps a valid cycle as it gets irregular, a NavMesh baked at runtime with jump links between islands, data-driven cards that simulate a full lap before accepting a placement, auto-combat, enemy AI and a JSON save. Credits are in its [README](https://github.com/Matt040205/Loopia#team).
 
-The project is fundamentally about security surface: every listener is literal loopback, the edge strips the client `Authorization` header before proxying, three independent credentials live in Windows Credential Manager, and **there is no cloud fallback** — an unknown route, model or encoding fails locally rather than seeking a second opinion.
+## Other projects
 
-Eleven Go executables: data and control plane, a supervisor with Windows Job Object containment and exponential restart backoff, a tray app and a browser monitor, and MCP servers — the administrative one deliberately unregistered by default. **440 test functions** (~15k lines of tests for ~24k lines of Go), a threat model, 22 ADRs, and CI running Staticcheck, govulncheck, the race detector, Gitleaks over the full history, CodeQL and CycloneDX SBOM generation.
+- **[Quality Review](https://github.com/Sitr3n01/quality_review):** a deterministic CI/CD quality gate for AI-assisted codebases, with skills for Claude Code and Codex. Baseline ratchets let metrics improve and block regressions; AI only explains the verdict. The same approach guided the ExoBeast lobby refactor.
+- **[LUMINA](https://github.com/Sitr3n01/apartment_rental_manager):** a local-first Windows desktop app for short-term rental hosts, with iCal sync across Airbnb and Booking.com, conflict detection, documents and notifications. Electron, React and FastAPI; Alpha release.
 
-Measured on the canary: **18.2 ms** p95 edge overhead, **120/120** long-context recall up to 240k tokens, and a real Codex session that fixed a failing Go test in 114 s. Production promotion stays **intentionally blocked** until the long-context profile's physical revalidation and artifact qualification pass — documented openly in the README rather than worked around.
+## How I work
 
-**Technologies:** Go 1.26 · llama.cpp · Model Context Protocol · PowerShell · Windows API (Job Objects, Credential Manager, ACLs, named pipes, Win32) · AMD ROCm · GitHub Actions · CodeQL · CycloneDX
-
----
-
-### [LUMINA](https://github.com/Sitr3n01/apartment_rental_manager) &nbsp; ![status](https://img.shields.io/badge/status-Alpha%20release-blue)
-
-Local-first Windows desktop application for managing short-term rentals across Airbnb and Booking.com. Shipped as an installer, runs entirely on the user's machine with no external servers.
-
-Automatic iCal calendar synchronisation, cross-platform conflict detection, DOCX document generation, email and Telegram notifications, and an occupancy and revenue dashboard.
-
-Three-layer architecture: Electron shell, React 18 frontend with Vite, and a FastAPI backend with **roughly 45 REST endpoints across 11 routers** over SQLAlchemy and SQLite.
-
-Implemented security: JWT HS256 with server-side blacklist, bcrypt, account lockout, rate limiting, CSRF protection, security headers, and input validation against XSS, path traversal and SSTI. **35 tests** in pytest.
-
-**Technologies:** Python · FastAPI · SQLAlchemy · React 18 · Vite · Electron 29 · SQLite · JWT · PyInstaller · electron-builder
-
----
-
-### [ExoBeast](https://github.com/Matt040205/ExoBeast) &nbsp; ![status](https://img.shields.io/badge/status-in%20development-orange)
-
-Cooperative tower-defense built in Unity 6 with online multiplayer for up to 4 players. Incubated at Brasília Game Hub.
-
-I work on the multiplayer architecture: Epic Online Services integration, lobby and session flow, Unity Netcode synchronisation, build credential handling, and host/client debugging.
-
-**Technologies:** Unity 6 · C# · Netcode for GameObjects · Unity Transport · Epic Online Services · FMOD
-
----
-
-### [Quality Review](https://github.com/Sitr3n01/quality_review) &nbsp; ![status](https://img.shields.io/badge/status-tooling-informational)
-
-Deterministic CI/CD quality gate for AI-assisted codebases.
-
-Baseline/ratchet workflows to block quality regression, deterministic checks, static analysis, and assisted review pipeline design.
-
-**Technologies:** JavaScript · Node.js · GitHub Actions · static analysis · Claude/Codex integration
-
----
+I work with AI coding agents (Claude Code and Codex) as pair programmers. I set the direction and own the decisions: scope, architecture, trust boundaries and what counts as done. Every change, whoever drafted it, passes the same gates: required CI checks, tests, static analysis, secret scanning and, where it matters, measured evidence. The threat model, ADRs and audit reports in these repositories are where those decisions are written down.
 
 ## Stack
 
 | Area | Technologies |
 |---|---|
-| **Backend** | Go, Python, Django 5, FastAPI, SQLAlchemy, Pydantic, REST API |
-| **Systems** | Windows API (Job Objects, Credential Manager, ACLs, Win32), PowerShell, process supervision |
-| **Frontend** | React 18, Vite, TypeScript, JavaScript, HTMX, Alpine.js, HTML, CSS |
+| **Back end** | Python, Django, Wagtail, FastAPI, SQLAlchemy, Pydantic, Go, REST APIs |
+| **Front end** | HTMX, Alpine.js, Tailwind CSS, three.js (WebGL), GSAP, React, Vite, TypeScript, JavaScript |
+| **Data** | PostgreSQL, SQLite |
+| **DevOps** | Docker Compose, Nginx, Gunicorn, Cloudflare, Sentry, Let's Encrypt, Linux VPS, GitHub Actions, Git |
+| **Quality** | pytest, Ruff, ESLint, Staticcheck, govulncheck, CodeQL, Gitleaks, SBOM, quality gates |
+| **Security** | Threat modeling, CSP, OAuth, credential management, ACL and firewall hardening, least privilege |
+| **Systems** | Windows API (Job Objects, Credential Manager, ACLs, named pipes), PowerShell, process supervision |
+| **AI** | Local inference (llama.cpp), OpenAI-compatible APIs, Model Context Protocol, LLM APIs, AI coding agents |
+| **Games** | Unity 6, C#, Netcode for GameObjects, Epic Online Services, Unity Relay, FMOD, NUnit, Blender add-on development (Python) |
 | **Desktop** | Electron, PyInstaller, electron-builder |
-| **Games** | Unity 6, C#, Netcode for GameObjects, Unity Transport, Epic Online Services, FMOD |
-| **Data** | PostgreSQL, SQLite, ChromaDB |
-| **DevOps** | Docker, Docker Compose, Nginx, GitHub Actions, Let's Encrypt, Linux, VPS, Git |
-| **Quality** | pytest, Ruff, ESLint, Staticcheck, govulncheck, Gitleaks, CodeQL, SBOM, quality gates, CI/CD |
-| **AI** | LLM APIs, local inference (llama.cpp), Model Context Protocol, multi-provider orchestration, memory systems, RAG |
-| **Security** | Threat modelling, credential management, ACL and firewall hardening, least privilege |
 
----
+## Now
 
-## Active fronts
-
-- Qualifying the Local AI Provider's production artifacts, starting with the long-context profile's physical revalidation
-- Advanced multiplayer synchronisation patterns in Unity
-- Taking LUMINA to Beta: test coverage and CI/CD
-- Evolutionary maintenance of the production portal
-
----
+- Qualifying Local AI Provider for production, starting with the physical revalidation of its long-context profile.
+- news_portal: running the test suite against PostgreSQL in CI and migrating to Wagtail 8.
+- ExoBeast: validating online sessions over the public internet, behind NAT.
 
 ## Education
 
-**BSc in Digital Games** — IESB, Brasília · expected 2027
+**BSc in Digital Games**, IESB, Brasília (expected 2027)
 
----
+## Contact
 
-<div align="center">
-
-**[⬆ Back to top](#josé-gilberto--sitr3n01)** · **[Português ⬆](#português)**
-
-</div>
+Email: [zegilfarias@outlook.com](mailto:zegilfarias@outlook.com) · Discord: `sitr3n`
