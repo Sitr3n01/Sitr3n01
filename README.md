@@ -8,7 +8,7 @@ Brasília, Brazil · [zegilfarias@outlook.com](mailto:zegilfarias@outlook.com) �
 
 </div>
 
-I build complete systems and run them in production: data model, interface, CI/CD and the server underneath. Right now that means a Django + Wagtail platform that runs two production websites for a real client, and a loopback-only inference server in Go that lets coding agents work against a local model without source code leaving the machine. I also wrote the online multiplayer of a Unity game incubated at Brasília Game Hub.
+I build and maintain software end to end, from the data model and interface to testing, deployment and operations. For a real client, I run a Django + Wagtail platform that powers two live websites and their editorial dashboard. Separately, I built a personal inference server in Go for local coding agents; it is functional for my use case and currently marked canary rather than formally production-qualified. I also work on multiplayer and gameplay systems for Unity team projects in the Brasília Game Hub incubation program.
 
 ## Featured projects
 
@@ -21,7 +21,7 @@ I build complete systems and run them in production: data model, interface, CI/C
 
 One Django 5.2 + Wagtail 7.4 codebase behind two production websites for a real client and the newsroom panel their team uses every day. [Komuniki](https://komuniki.com.br) is the site of a communication and arts school, and [Blog da Kelly](https://kellyfarias.com.br/news/) is a news portal. I built it and operate it end to end; it has been live since June 2026.
 
-**In numbers:** 823 tests, branch coverage enforced at 82%, 7 audit findings (3 high) fixed with regression tests, Docker build cache cut from 23.95 GB to 442 MB.
+**In numbers:** 823 tests, branch coverage enforced at 82%, 7 internal security review findings (3 high) fixed with regression tests, Docker build cache cut from 23.95 GB to 442 MB.
 
 <details>
 <summary>What's inside</summary>
@@ -29,7 +29,7 @@ One Django 5.2 + Wagtail 7.4 codebase behind two production websites for a real 
 
 - **Motion that respects the reader.** A WebGL hero in three.js with custom shaders and GSAP text reveals. All of it backs off under `prefers-reduced-motion`.
 - **A newsroom the client's team uses daily.** The Django admin (Unfold) and the Wagtail admin merged into one panel, with an editorial workflow: reporters write, editors approve, and scheduling only publishes approved revisions.
-- **Audited security.** A five-category audit found 7 issues (3 high), all fixed with regression tests. Nonce-based CSP, extension and MIME checks on uploads, Google sign-in, django-axes and Cloudflare Turnstile.
+- **Internal security review.** An internal review across five security categories found 7 issues (3 high), all fixed with regression tests. Nonce-based CSP, extension and MIME checks on uploads, Google sign-in, django-axes and Cloudflare Turnstile.
 - **Operations on a small VPS.** Docker Compose behind Cloudflare on 1 vCPU and 4 GB. Deploys are pull-based: the server fetches an approved tag, so CI holds no server credentials. I found and fixed a deploy stuck retrying for two months and Docker images that grew quadratically with database dumps, which took the build cache from 23.95 GB to 442 MB.
 - **Quality gates.** 823 tests, branch coverage enforced at 82% (83.5% today), CodeQL, pip-audit, secret scanning and a protected `master`.
 
@@ -60,7 +60,7 @@ It is an inference and admission-control plane in front of llama.cpp, plus the W
 
 ## Game development
 
-Student team projects in Unity 6.
+Unity 6 team projects developed in the Brasília Game Hub incubation program (June–December 2026).
 
 ### [ExoBeast](https://github.com/Matt040205/ExoBeast) &nbsp; ![status: in development](https://img.shields.io/badge/status-in%20development-orange)
 
@@ -128,4 +128,4 @@ I work with AI coding agents (Claude Code and Codex) as pair programmers. I set 
 
 ## Education
 
-**BSc in Digital Games**, IESB, Brasília (expected 2027)
+**Undergraduate Technology Degree (Tecnólogo) in Digital Games**, IESB, Brasília (expected 2027)
