@@ -8,7 +8,7 @@ Brasília, DF · [zegilfarias@outlook.com](mailto:zegilfarias@outlook.com) · Di
 
 </div>
 
-Construo sistemas completos e cuido deles em produção: modelagem de dados, interface, CI/CD e o servidor por baixo. Hoje isso quer dizer uma plataforma Django + Wagtail que roda dois sites em produção para um cliente real, e um servidor de inferência em Go, restrito a loopback, que permite rodar agentes de código contra um modelo local sem que o código-fonte saia da máquina. Também escrevi o multiplayer online de um jogo em Unity incubado no Brasília Game Hub.
+Desenvolvo e mantenho software de ponta a ponta, da modelagem de dados e interface aos testes, deploy e operação. Para um cliente real, cuido de uma plataforma Django + Wagtail que atende dois sites em produção e o painel editorial da equipe. Separadamente, construí um servidor pessoal de inferência em Go para agentes de código locais; ele funciona para o uso a que se destina e segue identificado como canary, sem qualificação formal de produção. Também desenvolvo sistemas de multiplayer e gameplay em projetos de equipe Unity no programa de incubação Brasília Game Hub.
 
 ## Projetos em destaque
 
@@ -21,7 +21,7 @@ Construo sistemas completos e cuido deles em produção: modelagem de dados, int
 
 Um único código Django 5.2 + Wagtail 7.4 por trás de dois sites em produção para um cliente real e do painel editorial que a equipe usa todo dia. A [Komuniki](https://komuniki.com.br) é o site de uma escola de comunicação e artes, e o [Blog da Kelly](https://kellyfarias.com.br/news/) é um portal de notícias. Construí e opero tudo de ponta a ponta; está no ar desde junho de 2026.
 
-**Em números:** 823 testes, cobertura de branches exigida a partir de 82%, 7 problemas de auditoria (3 altos) corrigidos com teste de regressão, cache de build do Docker de 23,95 GB para 442 MB.
+**Em números:** 823 testes, cobertura de branches exigida a partir de 82%, 7 problemas de uma revisão interna de segurança (3 altos) corrigidos com teste de regressão, cache de build do Docker de 23,95 GB para 442 MB.
 
 <details>
 <summary>O que tem dentro</summary>
@@ -29,7 +29,7 @@ Um único código Django 5.2 + Wagtail 7.4 por trás de dois sites em produção
 
 - **Movimento que respeita quem lê.** Hero em WebGL com three.js e shaders próprios, e reveal de texto com GSAP. Tudo isso recua com `prefers-reduced-motion`.
 - **Um painel que a equipe da cliente usa de verdade.** O Django admin (Unfold) e o admin do Wagtail viraram um painel só, com fluxo editorial: o repórter escreve, o editor aprova, e o agendamento só publica revisão aprovada.
-- **Segurança auditada.** Uma auditoria em cinco categorias achou 7 problemas (3 altos), todos corrigidos com teste de regressão. CSP com nonce, checagem de extensão e MIME nos uploads, login com Google, django-axes e Cloudflare Turnstile.
+- **Revisão interna de segurança.** Uma revisão interna em cinco categorias de segurança achou 7 problemas (3 altos), todos corrigidos com teste de regressão. CSP com nonce, checagem de extensão e MIME nos uploads, login com Google, django-axes e Cloudflare Turnstile.
 - **Operação numa VPS pequena.** Docker Compose atrás do Cloudflare numa VPS de 1 vCPU e 4 GB. O deploy é puxado pela VPS a partir de uma tag aprovada, então o CI não guarda credencial do servidor. Achei e corrigi um deploy que ficou dois meses repetindo em loop e imagens Docker que cresciam de forma quadrática com os dumps do banco, o que levou o cache de build de 23,95 GB para 442 MB.
 - **Travas de qualidade.** 823 testes, cobertura de branches exigida a partir de 82% (hoje, 83,5%), CodeQL, pip-audit, varredura de segredos e `master` protegido.
 
@@ -60,7 +60,7 @@ Servidor de inferência em Go, compatível com a API da OpenAI e restrito a loop
 
 ## Desenvolvimento de jogos
 
-Projetos acadêmicos em equipe, feitos em Unity 6.
+Projetos em equipe desenvolvidos em Unity 6 no programa de incubação Brasília Game Hub (junho–dezembro de 2026).
 
 ### [ExoBeast](https://github.com/Matt040205/ExoBeast/blob/main/README.pt-BR.md) &nbsp; ![status: em desenvolvimento](https://img.shields.io/badge/status-em%20desenvolvimento-orange)
 
@@ -128,4 +128,4 @@ Uso agentes de código com IA (Claude Code e Codex) como pares de programação.
 
 ## Formação
 
-**Bacharelado em Jogos Digitais**, IESB, Brasília (conclusão prevista em 2027)
+**Tecnólogo em Jogos Digitais**, IESB, Brasília (conclusão prevista em 2027)
