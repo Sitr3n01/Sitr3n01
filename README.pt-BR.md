@@ -93,7 +93,11 @@ Em `Assets/Scripts/Hex`: um gerador de anel que continua sendo um ciclo válido 
 
 ## Como eu trabalho
 
-Uso agentes de código com IA (Claude Code e Codex) como pares de programação. Eu defino a direção e tomo as decisões: escopo, arquitetura, fronteiras de confiança e o que conta como pronto. Toda mudança, seja quem for que a redigiu, passa pelas mesmas travas: checks obrigatórios no CI, testes, análise estática, varredura de segredos e, onde importa, evidência medida. O threat model, as ADRs e os relatórios de auditoria destes repositórios são onde essas decisões ficam registradas.
+Minha abordagem começa pela compreensão do problema, de seus objetivos e das dificuldades envolvidas. Gosto de investigar diferentes caminhos antes de definir uma solução, combinando pesquisas técnicas, ferramentas agênticas de IA e experimentação prática.
+
+Tenho uma curiosidade constante por hardware, software e novas tecnologias, o que me motiva a explorar diferentes ferramentas, metodologias e possibilidades. Nesse processo, procuro entender não apenas como cada solução funciona, mas também suas vantagens, limitações e impactos em desempenho, complexidade e manutenção.
+
+A partir dessa investigação, planejo uma arquitetura adequada às necessidades do projeto e desenvolvo a solução de forma incremental, utilizando testes e verificações determinísticas para validar cada etapa. Meu objetivo é construir soluções bem fundamentadas, com código de qualidade e resultados alinhados ao que foi planejado.
 
 ## Stack
 

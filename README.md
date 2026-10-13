@@ -93,7 +93,11 @@ In `Assets/Scripts/Hex`: a ring generator that keeps a valid cycle as it gets ir
 
 ## How I work
 
-I work with AI coding agents (Claude Code and Codex) as pair programmers. I set the direction and own the decisions: scope, architecture, trust boundaries and what counts as done. Every change, whoever drafted it, passes the same gates: required CI checks, tests, static analysis, secret scanning and, where it matters, measured evidence. The threat model, ADRs and audit reports in these repositories are where those decisions are written down.
+My approach starts with understanding the problem, its goals and the difficulties involved. I like to explore different paths before settling on a solution, combining technical research, agentic AI tools and hands-on experimentation.
+
+I'm constantly curious about hardware, software and new technologies, which drives me to explore different tools, methodologies and possibilities. Along the way, I try to understand not only how each solution works, but also its strengths, limitations and impact on performance, complexity and maintainability.
+
+Building on that investigation, I plan an architecture that fits the project's needs and develop the solution incrementally, using tests and deterministic checks to validate each step. My goal is to build well-grounded solutions, with quality code and results that match what was planned.
 
 ## Stack
 
