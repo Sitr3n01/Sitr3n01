@@ -4,17 +4,18 @@
 
 [English](https://github.com/Sitr3n01) · **Português**
 
-Brasília, DF · [zegilfarias@outlook.com](mailto:zegilfarias@outlook.com) · Discord `sitr3n`
+Brasília, DF · [Portfólio](https://sitr3n01.github.io/) · [zegilfarias@outlook.com](mailto:zegilfarias@outlook.com) · Discord `sitr3n`
 
 </div>
 
-Desenvolvo e mantenho software de ponta a ponta, da modelagem de dados e interface aos testes, deploy e operação. Para um cliente real, cuido de uma plataforma Django + Wagtail que atende dois sites em produção e o painel editorial da equipe. Separadamente, construí um servidor pessoal de inferência em Go para agentes de código locais; ele funciona para o uso a que se destina e segue identificado como canary, sem qualificação formal de produção. Também desenvolvo sistemas de multiplayer e gameplay em projetos de equipe Unity no programa de incubação Brasília Game Hub.
+Desenvolvo e mantenho software de ponta a ponta, da modelagem de dados e interface aos testes, deploy e operação. Para um cliente real, cuido de uma plataforma Django + Wagtail que atende dois sites em produção e o painel editorial da equipe. Separadamente, construí um servidor pessoal de inferência em Go para agentes de código locais; ele funciona para o uso a que se destina e segue identificado como canary, sem qualificação formal de produção. No Windows, construí o XGB_P, uma barra de jogo pensada para o controle no modo Xbox de tela cheia. Também desenvolvo sistemas de multiplayer e gameplay em projetos de equipe Unity no programa de incubação Brasília Game Hub.
 
 ## Projetos em destaque
 
 <p align="center">
-  <a href="https://github.com/Sitr3n01/news_portal/blob/master/README.pt-BR.md"><img src="https://raw.githubusercontent.com/Sitr3n01/news_portal/master/docs/images/social-preview.jpg" width="48%" alt="news_portal: um único código Django + Wagtail por trás de dois sites em produção e da redação deles"></a>
-  <a href="https://github.com/Sitr3n01/local-ai-provider/blob/main/README.pt-BR.md"><img src="https://raw.githubusercontent.com/Sitr3n01/local-ai-provider/main/docs/images/social-preview.png" width="48%" alt="Local AI Provider: servidor de inferência compatível com a API da OpenAI e restrito a loopback, para agentes de código, ao lado do monitor em execução"></a>
+  <a href="https://github.com/Sitr3n01/news_portal/blob/master/README.pt-BR.md"><img src="https://raw.githubusercontent.com/Sitr3n01/news_portal/master/docs/images/social-preview.jpg" width="32%" alt="news_portal: um único código Django + Wagtail por trás de dois sites em produção e da redação deles"></a>
+  <a href="https://github.com/Sitr3n01/local-ai-provider/blob/main/README.pt-BR.md"><img src="https://raw.githubusercontent.com/Sitr3n01/local-ai-provider/main/docs/images/social-preview.png" width="32%" alt="Local AI Provider: servidor de inferência compatível com a API da OpenAI e restrito a loopback, para agentes de código, ao lado do monitor em execução"></a>
+  <a href="https://github.com/Sitr3n01/XGB_P/blob/main/README.pt-BR.md"><img src="https://raw.githubusercontent.com/Sitr3n01/XGB_P/main/docs/images/social-preview.png" width="32%" alt="XGB_P: barra de jogo pensada para o controle no modo Xbox de tela cheia do Windows 11, ao lado do painel Início com dois jogos abertos e o acesso rápido"></a>
 </p>
 
 ### [news_portal](https://github.com/Sitr3n01/news_portal/blob/master/README.pt-BR.md) &nbsp; ![status: em produção](https://img.shields.io/badge/status-em%20produ%C3%A7%C3%A3o-2ea44f)
@@ -55,6 +56,29 @@ Servidor de inferência em Go, compatível com a API da OpenAI e restrito a loop
 - **Status honesto.** Modelos passam por um gate de promoção, e a produção fica bloqueada até a última evidência chegar. Quando o protótipo v1 vazou uma credencial para os logs locais, documentei o caso num [relatório de incidente aberto](https://github.com/Sitr3n01/local-ai-provider/blob/main/incident-reports/2026-07-20-panel-zstd-credential-exposure.md) e transformei "logs só com metadados" em invariante testado.
 
 **Tecnologias:** Go · llama.cpp · Model Context Protocol · Windows API · PowerShell · AMD ROCm · GitHub Actions · CodeQL
+
+</details>
+
+### [XGB_P](https://github.com/Sitr3n01/XGB_P/blob/main/README.pt-BR.md) &nbsp; ![status: candidata v3.0.0](https://img.shields.io/badge/status-candidata%20v3.0.0-orange)
+
+Barra de jogo pensada para o controle no modo Xbox de tela cheia do Windows 11, construída em torno do Steam Big Picture e de um DualSense. Um toque no PS abre a barra sobre o jogo, o controle navega por ela e a entrada volta para a Steam quando ela fecha, sem mexer em nenhum binário da Microsoft.
+
+**Em números:** comandos chegam à Steam em 30–138 ms por um canal local, contra cerca de 1,1 s pelo shell, 95,9% menos passagens de layout a cada troca de painel, executável de 1,0 MB sem nenhum código de teste, 22 modos de verificação por candidata e 114 ADRs.
+
+<details>
+<summary>O que tem dentro</summary>
+<br>
+
+Um único processo WPF residente no .NET Framework que já vem com o Windows: nada para instalar, nenhum serviço, nenhum driver.
+
+- **Entrada e foco entregues sem disputa.** A barra só abre quando o PS é solto, passa a Steam para o layout de desktop por um ciclo confirmado do Steam Input e bloqueia a navegação até a Steam soltar o controle. O foco volta para a janela exata de onde veio, e a ativação lê o modo Xbox pela API oficial e falha fechada.
+- **Processos pela identidade.** Pausar, retomar e fechar conferem PID e horário de criação, um diário gravado antes de cada pausa retoma os jogos depois de uma queda, e a troca de jogo espera a Steam encerrar a sessão para a sobreposição dela não ficar presa na tela.
+- **Uma barra para o PC inteiro.** Jogos abertos, acesso rápido e mídia no Início; pesquisa de programas digitada num teclado pelo controle; áudio por app, captura do AMD ReLive e ajustes gráficos pelo ADLX; sensores do HWiNFO e do RTSS, em que dado ausente aparece como indisponível, nunca como número inventado. Bateria pelo Logitech G HUB, controle de TV Samsung e despertar pelo PS são opcionais e ficam desligados ou só de leitura até serem configurados.
+- **Invariantes no gate.** O DualSense é só lido, APIs de injeção como `WriteProcessMemory` são recusadas no código, e nada é instalado: nenhum pacote, certificado, serviço ou tarefa agendada.
+- **Engenharia.** Cerca de 26,9 mil linhas de C# 5, mais 10 mil linhas de suítes de verificação que só entram numa build de testes separada. Cada rodada de verificação gera um recibo amarrado ao SHA-256 do executável, e o gate recusa recibos desatualizados ou adulterados. A CI roda as checagens estáticas, as duas builds e as suítes com fixtures; Gitleaks cobre o histórico completo, CodeQL e Dependabot estão ativos e o workflow de release anexa a proveniência da build.
+- **Status honesto.** Implementado, aprovado no gate local e na CI, e em uso diário no meu computador. A validação física no modo Xbox (Steam, DSX, jogos reais, a TV) ainda está pendente, por isso nenhuma release foi publicada.
+
+**Tecnologias:** C# · WPF · .NET Framework 4.8 · Windows API · Steam · DualSense (HID) · AMD ADLX · HWiNFO · RTSS · GitHub Actions · CodeQL
 
 </details>
 
@@ -118,7 +142,7 @@ A partir dessa investigação, planejo uma arquitetura adequada às necessidades
 | **Sistemas** | Windows API (Job Objects, Credential Manager, ACLs, named pipes), PowerShell, supervisão de processos |
 | **IA** | Inferência local (llama.cpp), APIs compatíveis com a OpenAI, Model Context Protocol, APIs de LLM, agentes de código |
 | **Jogos** | Unity 6, C#, Netcode for GameObjects, Epic Online Services, Unity Relay, FMOD, NUnit, addons do Blender em Python |
-| **Desktop** | Electron, PyInstaller, electron-builder |
+| **Desktop** | WPF (.NET Framework), Electron, PyInstaller, electron-builder |
 
 </details>
 
@@ -129,7 +153,8 @@ A partir dessa investigação, planejo uma arquitetura adequada às necessidades
 - Qualificar o Local AI Provider para produção, a começar pela revalidação física do perfil de contexto longo.
 - news_portal: rodar a suíte de testes contra PostgreSQL no CI e migrar para o Wagtail 8.
 - ExoBeast: validar sessões online pela internet pública, atrás de NAT.
+- XGB_P: validação física da 3.0.0 no modo Xbox, antes da primeira release da 3.0.0.
 
 ## Formação
 
-**Tecnólogo em Jogos Digitais**, IESB, Brasília (conclusão prevista em 2027)
+**Tecnólogo em Jogos Digitais**, IESB, Brasília (conclusão prevista em dezembro de 2026)
