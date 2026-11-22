@@ -4,7 +4,7 @@
 
 [English](https://github.com/Sitr3n01) · **Português**
 
-Brasília, DF · [Portfólio](https://sitr3n01.github.io/) · [zegilfarias@outlook.com](mailto:zegilfarias@outlook.com) · Discord `sitr3n`
+Brasília, DF · [Portfólio](https://sitr3n01.github.io/) · [zegilfarias@outlook.com](mailto:zegilfarias@outlook.com) · Discord `sakikmr`
 
 </div>
 
