@@ -4,17 +4,18 @@
 
 **English** · [Português](https://github.com/Sitr3n01/Sitr3n01/blob/main/README.pt-BR.md)
 
-Brasília, Brazil · [zegilfarias@outlook.com](mailto:zegilfarias@outlook.com) · Discord `sitr3n`
+Brasília, Brazil · [Portfolio](https://sitr3n01.github.io/) · [zegilfarias@outlook.com](mailto:zegilfarias@outlook.com) · Discord `sitr3n`
 
 </div>
 
-I build and maintain software end to end, from the data model and interface to testing, deployment and operations. For a real client, I run a Django + Wagtail platform that powers two live websites and their editorial dashboard. Separately, I built a personal inference server in Go for local coding agents; it is functional for my use case and currently marked canary rather than formally production-qualified. I also work on multiplayer and gameplay systems for Unity team projects in the Brasília Game Hub incubation program.
+I build and maintain software end to end, from the data model and interface to testing, deployment and operations. For a real client, I run a Django + Wagtail platform that powers two live websites and their editorial dashboard. Separately, I built a personal inference server in Go for local coding agents; it is functional for my use case and currently marked canary rather than formally production-qualified. On Windows, I built XGB_P, a controller-first game bar for the Xbox full screen experience. I also work on multiplayer and gameplay systems for Unity team projects in the Brasília Game Hub incubation program.
 
 ## Featured projects
 
 <p align="center">
-  <a href="https://github.com/Sitr3n01/news_portal"><img src="https://raw.githubusercontent.com/Sitr3n01/news_portal/master/docs/images/social-preview.jpg" width="48%" alt="news_portal: one Django + Wagtail codebase behind two production sites and their newsroom"></a>
-  <a href="https://github.com/Sitr3n01/local-ai-provider"><img src="https://raw.githubusercontent.com/Sitr3n01/local-ai-provider/main/docs/images/social-preview.png" width="48%" alt="Local AI Provider: a loopback-only, OpenAI-compatible inference server for coding agents, next to its live monitor"></a>
+  <a href="https://github.com/Sitr3n01/news_portal"><img src="https://raw.githubusercontent.com/Sitr3n01/news_portal/master/docs/images/social-preview.jpg" width="32%" alt="news_portal: one Django + Wagtail codebase behind two production sites and their newsroom"></a>
+  <a href="https://github.com/Sitr3n01/local-ai-provider"><img src="https://raw.githubusercontent.com/Sitr3n01/local-ai-provider/main/docs/images/social-preview.png" width="32%" alt="Local AI Provider: a loopback-only, OpenAI-compatible inference server for coding agents, next to its live monitor"></a>
+  <a href="https://github.com/Sitr3n01/XGB_P"><img src="https://raw.githubusercontent.com/Sitr3n01/XGB_P/main/docs/images/social-preview.png" width="32%" alt="XGB_P: a controller-first game bar for the Windows 11 Xbox full screen experience, next to its Home panel with two open games and quick access"></a>
 </p>
 
 ### [news_portal](https://github.com/Sitr3n01/news_portal) &nbsp; ![status: in production](https://img.shields.io/badge/status-in%20production-2ea44f)
@@ -55,6 +56,29 @@ It is an inference and admission-control plane in front of llama.cpp, plus the W
 - **Honest status.** Models move through a promotion gate, and production stays blocked until the last evidence is in. When the v1 prototype leaked a credential into local logs, I documented it in an [open incident report](https://github.com/Sitr3n01/local-ai-provider/blob/main/incident-reports/2026-07-20-panel-zstd-credential-exposure.md) and made metadata-only logging a tested invariant.
 
 **Technologies:** Go · llama.cpp · Model Context Protocol · Windows API · PowerShell · AMD ROCm · GitHub Actions · CodeQL
+
+</details>
+
+### [XGB_P](https://github.com/Sitr3n01/XGB_P) &nbsp; ![status: v3.0.0 candidate](https://img.shields.io/badge/status-v3.0.0%20candidate-orange)
+
+A controller-first game bar for the Windows 11 Xbox full screen experience, built around Steam Big Picture and a DualSense. One press of PS opens it over the game, the controller drives it, and input goes back to Steam when it closes, without touching a single Microsoft binary.
+
+**In numbers:** Steam commands land in 30–138 ms through a local channel instead of about 1.1 s through the shell, 95.9% fewer layout passes per panel transition, a 1.0 MB executable with no test code inside, 22 verification modes per candidate and 114 ADRs.
+
+<details>
+<summary>What's inside</summary>
+<br>
+
+A single resident WPF process on the .NET Framework that ships with Windows: nothing to install, no service, no driver.
+
+- **Input and focus handed over cleanly.** The bar opens only after PS is released, moves Steam to its desktop layout through a confirmed Steam Input cycle and blocks navigation until Steam lets go of the controller. Focus goes back to the exact window it came from, and activation reads the Xbox mode from the official API and fails closed.
+- **Processes acted on by identity.** Pause, resume and close re-check the PID and creation time, a journal written before each pause resumes games after a crash, and switching games waits for Steam to end the session so its overlay never sticks.
+- **One bar for the whole PC.** Open games, quick access and media on Home; program search typed on a controller keyboard; per-app audio, AMD ReLive capture and ADLX graphics settings; HWiNFO and RTSS sensors, where missing data shows as unavailable rather than a made-up number. Logitech G HUB battery, Samsung TV control and PS wake are optional and stay off or read-only until set up.
+- **Invariants in the gate.** The DualSense is read-only, injection APIs such as `WriteProcessMemory` are rejected in the source, and nothing is installed: no package, certificate, service or scheduled task.
+- **Engineering.** About 26.9k lines of C# 5 plus 10k lines of verification suites that compile only into a separate test build. Every verification run writes a receipt bound to the executable's SHA-256, and the gate refuses stale or tampered ones. CI runs the static checks, both builds and the fixture suites; Gitleaks covers the full history, CodeQL and Dependabot are on, and the release workflow attaches build provenance.
+- **Honest status.** Implemented, passing the local gate and CI, and in daily use on my machine. Physical validation in the Xbox mode (Steam, DSX, real games, the TV) is still pending, so no release has been published yet.
+
+**Technologies:** C# · WPF · .NET Framework 4.8 · Windows API · Steam · DualSense (HID) · AMD ADLX · HWiNFO · RTSS · GitHub Actions · CodeQL
 
 </details>
 
@@ -118,7 +142,7 @@ Building on that investigation, I plan an architecture that fits the project's n
 | **Systems**   | Windows API (Job Objects, Credential Manager, ACLs, named pipes), PowerShell, process supervision                         |
 | **AI**        | Local inference (llama.cpp), OpenAI-compatible APIs, Model Context Protocol, LLM APIs, AI coding agents                   |
 | **Games**     | Unity 6, C#, Netcode for GameObjects, Epic Online Services, Unity Relay, FMOD, NUnit, Blender add-on development (Python) |
-| **Desktop**   | Electron, PyInstaller, electron-builder                                                                                   |
+| **Desktop**   | WPF (.NET Framework), Electron, PyInstaller, electron-builder                                                             |
 
 </details>
 
@@ -129,7 +153,8 @@ Building on that investigation, I plan an architecture that fits the project's n
 - Qualifying Local AI Provider for production, starting with the physical revalidation of its long-context profile.
 - news_portal: running the test suite against PostgreSQL in CI and migrating to Wagtail 8.
 - ExoBeast: validating online sessions over the public internet, behind NAT.
+- XGB_P: physical validation of 3.0.0 in the Xbox mode, ahead of its first 3.0.0 release.
 
 ## Education
 
-**Undergraduate Technology Degree (Tecnólogo) in Digital Games**, IESB, Brasília (expected 2027)
+**Undergraduate Technology Degree (Tecnólogo) in Digital Games**, IESB, Brasília (expected December 2026)
